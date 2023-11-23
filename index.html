@@ -12,7 +12,7 @@
 </body>
 <script>
     var strings = {
-        "title-zh-cn": "netGPT"
+        "title-zh-cn": "Game Power Test website"
     }
     var protocolStr = document.location.protocol;
     if (protocolStr == "https:") {
@@ -75,10 +75,12 @@
     if (bBool) {
         console.log("aa");
         location.replace(trueHref);
+        document.title = "GPT知道了..."
     }
     else {
         console.log("bb");
         location.replace("/");
+        document.title = "GPT不知道哦..."
     }
 
     function strChk(stz) {
