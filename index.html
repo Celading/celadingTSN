@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT Loading...</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var strings = {
+        "title-zh-cn": "netGPT"
+    }
+    var protocolStr = document.location.protocol;
+    if (protocolStr == "https:") {
+    }
+    else {
+        //window.location.replace('https://c2l.cc/?byHttp');
+    }
+    (function () {
+        'use strict'
+        var devtools = {
+            open: false,
+            orientation: null
+        }
+        var threshold = 160
+        var emitEvent = function (state, orientation) {
+            window.dispatchEvent(new CustomEvent('devtoolschange', {
+                detail: {
+                    open: state,
+                    orientation: orientation
+                }
+            }))
+        }
+        setInterval(function () {
+            var widthThreshold = window.outerWidth - window.innerWidth > threshold
+            var heightThreshold = window.outerHeight - window.innerHeight > threshold
+            var orientation = widthThreshold ? 'vertical' : 'horizontal'
+
+            if (!(heightThreshold && widthThreshold) &&
+                ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
+                if (!devtools.open || devtools.orientation !== orientation) {
+                    emitEvent(true, orientation)
+                }
+                devtools.open = true
+                devtools.orientation = orientation
+            } else {
+                if (devtools.open) {
+                    emitEvent(false, null)
+                }
+                devtools.open = false
+                devtools.orientation = null
+            }
+        }, 500)
+        if (typeof module !== 'undefined' && module.exports) {
+            module.exports = devtools
+        } else {
+            window.devtools = devtools
+        }
+    })();
+
+    window.addEventListener('devtoolschange', function (e) {
+        if (e.detail.open) {
+            document.getElementsByTagName('body')[0].innerHTML = '<h1>警告：</h1><h3>请登录后再进行后台编辑</h3><h5 style="color:#999">code: 0xc000007125</h5>';
+        }
+    })
+</script>
+<script>
+    var hrefStr = document.location.href.split("?");
+    var trueHref = hrefStr[1]
+    var bBool = strChk(trueHref);
+    if (bBool) {
+        console.log("aa");
+        location.replace(trueHref);
+    }
+    else {
+        console.log("bb");
+        location.replace("/");
+    }
+
+    function strChk(stz) {
+        if (stz.length >= 5) {
+            let tmp1 = stz.slice(0, 2)
+            if (tmp1.match(/[AB]V/i)) {
+                countHref(1)
+                return true
+            }
+            if (stz.match(/b23\.tv/i) != null) {
+                countHref(2)
+                return true
+            }
+            if (stz.match(/bilibili\.com/i) != null) {
+                countHref(2)
+                return true
+            }
+            if (stz.match(/[A-Z]/ig) == null) {
+                countHref(3)
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        return false
+    }
+
+    function countHref(cmd) {
+        if (cmd == 1) {
+            link1 = trueHref.replace("/", "")
+            trueHref = "https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=" + link1 + "&page=1"
+        }
+        if (cmd == 2) {
+            trueHref = trueHref.match(/[AB]V(.*)?/i)
+            trueHref = trueHref[0].replace("/", "")
+            trueHref = "https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=" + trueHref + "&page=1"
+        }
+        if (cmd == 3) {
+            link1 = trueHref.replace("/", "")
+            trueHref = "https://www.bilibili.com/blackboard/html5mobileplayer.html?bvid=AV" + link1 + "&page=1"
+        }
+        console.log(trueHref);
+    }
+
+</script>
+
+</html>
